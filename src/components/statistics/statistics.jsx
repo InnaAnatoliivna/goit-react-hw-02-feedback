@@ -1,5 +1,3 @@
-// import TitleFeedback from 'components/title/titleFeedback';
-
 const Statistics = ({ fbTitle, good, neutral, bad, total = 0, positivOption = 0 }) => {
     return (
         <div>

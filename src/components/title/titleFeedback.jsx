@@ -1,5 +1,3 @@
-
-
 const Section = ({ fbTitle, children }) => {
     return (
         <>
