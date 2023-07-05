@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import Head from 'components/title/head'
-import Feedback from 'components/feedback/feedback'
-import Statistics from 'components/statistics/statistics'
+import Head from 'components/title/head';
+import FeedbackOptions from 'components/feedback/feedback';
+import Statistics from 'components/statistics/statistics';
+import Section from 'components/title/titleFeedback';
 
 
 export class App extends Component {
@@ -11,10 +12,31 @@ export class App extends Component {
     bad: 0
   }
 
-  render() {
+  onBtnOptions = (evt) => {
+    if (evt.target.textContent === 'Good') {
+      this.setState(({ good }) => ({ good: good + 1 }))
+    } else if (evt.target.textContent === 'Neutral') {
+      this.setState(({ neutral }) => ({ neutral: neutral + 1 }))
+    } else if (evt.target.textContent === 'Bad') {
+      this.setState(({ bad }) => ({ bad: bad + 1 }))
+    }
+  };
 
+  countTotalFeedback = ({ good, neutral, bad }) => {
+    return good + neutral + bad;
+  }
+
+  countPositiveFeedbackPercentage = (total) => {
+    const { good } = this.state;
+    if (total !== 0) {
+      return Math.round((good / total) * 100)
+    }
+  }
+
+  render() {
     const { good, neutral, bad } = this.state;
-    // console.log(this.state)
+    const total = this.countTotalFeedback(this.state);
+    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage(total)
 
     return (
       <div>
@@ -22,19 +44,23 @@ export class App extends Component {
           pageTitle='Cafe Expresso'
         />
 
-        <Feedback
-          fbTitle='Please leave feedback'
-        />
+        <Section fbTitle='Please leave feedback'>
+          <FeedbackOptions
+            onLeaveFeedback={this.onBtnOptions}
+          />
+        </Section>
 
-        <Statistics
-          fbTitle='Statistics'
-          good={good}
-          neutral={neutral}
-          bad={bad}
-        />
+        <Section fbTitle='Statistics'>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivOption={positiveFeedbackPercentage}
+          />
+        </Section>
+
       </div>
     );
   }
-};
-
-// react homework
+}

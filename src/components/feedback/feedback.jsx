@@ -1,17 +1,13 @@
-import TitleFeedback from 'components/title/titleFeedback';
 import { CiFaceFrown, CiFaceMeh, CiFaceSmile } from 'react-icons/ci';
 
-const Feedback = ({ fbTitle }) => {
+const FeedbackOptions = ({ fbTitle, onLeaveFeedback, option }) => {
     return (
-        <>
-            <TitleFeedback fbTitle={fbTitle} />
-            <div>
-                <button type="button"><CiFaceSmile />Good</button>
-                <button type="button"><CiFaceMeh />Neutral</button>
-                <button type="button"><CiFaceFrown />Bad</button>
-            </div>
-        </>
+        <div>
+            <button type="button" onClick={onLeaveFeedback}><CiFaceSmile />Good</button>
+            <button type="button" onClick={onLeaveFeedback}><CiFaceMeh />Neutral</button>
+            <button type="button" onClick={onLeaveFeedback}><CiFaceFrown />Bad</button>
+        </div>
     )
 }
 
-export default Feedback;
+export default FeedbackOptions;

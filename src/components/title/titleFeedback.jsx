@@ -1,7 +1,9 @@
-const TitleFeedback = ({ fbTitle }) => {
+const Section = ({ fbTitle, children }) => {
     return (
-        <h2>{fbTitle}</h2>
-    )
+        <>
+            <h2>{fbTitle}</h2>
+            {children}
+        </>)
 }
 
-export default TitleFeedback;
+export default Section;
