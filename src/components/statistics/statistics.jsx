@@ -1,17 +1,23 @@
-const Statistics = ({ fbTitle, good, neutral, bad, total = 0, positivOption = 0 }) => {
-    return (
-        <div>
-            <ul>
-                <li>Good: {good}</li>
-                <li>Neutral: {neutral}</li>
-                <li>Bad: {bad}</li>
-                <li>Total: {total}</li>
-                <li>Positiv feedback: {positivOption} %</li>
+import css from 'components/statistics/statistics.module.css'
 
-            </ul>
-
-        </div>
-    )
+const Statistics = ({ good, neutral, bad, total = 0, positivOption = 0 }) => {
+    if (good !== 0 || neutral !== 0 || bad !== 0) {
+        return (
+            <div>
+                <ul>
+                    <li className={css.item}>Good: {good}</li>
+                    <li className={css.item}>Neutral: {neutral}</li>
+                    <li className={css.item}>Bad: {bad}</li>
+                    <li className={css.item}>Total: {total}</li>
+                    <li className={css.item}>Positiv feedback: {positivOption} %</li>
+                </ul>
+            </div>
+        )
+    } else {
+        return (
+            <p className={css.text}>No feedback given</p>
+        )
+    }
 }
 
 export default Statistics;

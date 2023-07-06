@@ -2,7 +2,7 @@ import { Component } from 'react';
 import Head from 'components/title/head';
 import FeedbackOptions from 'components/feedback/feedback';
 import Statistics from 'components/statistics/statistics';
-import Section from 'components/title/titleFeedback';
+import Section from 'components/title/section-title';
 
 
 export class App extends Component {
@@ -39,7 +39,7 @@ export class App extends Component {
     const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage(total)
 
     return (
-      <div>
+      <div className="container">
         <Head
           pageTitle='Cafe Expresso'
         />

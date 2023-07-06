@@ -1,12 +1,12 @@
 import { CiFaceFrown, CiFaceMeh, CiFaceSmile } from 'react-icons/ci';
-import { Button } from 'components/feedback/butons-style'
+import css from 'components/feedback/feedback.module.css'
 
 const FeedbackOptions = ({ fbTitle, onLeaveFeedback, option }) => {
     return (
-        <div>
-            <Button type="button" onClick={onLeaveFeedback}><CiFaceSmile />Good</Button>
-            <Button type="button" onClick={onLeaveFeedback}><CiFaceMeh />Neutral</Button>
-            <Button type="button" onClick={onLeaveFeedback}><CiFaceFrown />Bad</Button>
+        <div className={css.wrapper}>
+            <button className={css.btn} type="button" onClick={onLeaveFeedback}><CiFaceSmile className={css.icon} /><span>Good</span></button>
+            <button className={css.btn} type="button" onClick={onLeaveFeedback}><CiFaceMeh className={css.icon} /><span>Neutral</span></button>
+            <button className={css.btn} type="button" onClick={onLeaveFeedback}><CiFaceFrown className={css.icon} /><span>Bad</span></button>
         </div>
     )
 }
