@@ -1,8 +1,9 @@
 // import PropTypes from 'prop-types';
+import css from 'components/title/head.module.css'
 
 const Head = ({ pageTitle }) => {
     return (
-        <h1>{pageTitle}</h1>
+        <h1 className={css.title}>{pageTitle}</h1>
     )
 }
 
