@@ -12,15 +12,9 @@ export class App extends Component {
     bad: 0
   }
 
-  onBtnOptions = (evt) => {
-    if (evt.target.textContent === 'Good') {
-      this.setState(({ good }) => ({ good: good + 1 }))
-    } else if (evt.target.textContent === 'Neutral') {
-      this.setState(({ neutral }) => ({ neutral: neutral + 1 }))
-    } else if (evt.target.textContent === 'Bad') {
-      this.setState(({ bad }) => ({ bad: bad + 1 }))
-    }
-  };
+  onBtnOptions = (type) => {
+    this.setState((prevState) => ({ [type]: prevState[type] + 1 }))
+  }
 
   countTotalFeedback = ({ good, neutral, bad }) => {
     return good + neutral + bad;
@@ -47,6 +41,7 @@ export class App extends Component {
         <Section fbTitle='Please leave feedback'>
           <FeedbackOptions
             onLeaveFeedback={this.onBtnOptions}
+            options={Object.keys(this.state)}
           />
         </Section>
 

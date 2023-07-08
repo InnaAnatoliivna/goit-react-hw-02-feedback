@@ -1,14 +1,21 @@
 import { CiFaceFrown, CiFaceMeh, CiFaceSmile } from 'react-icons/ci';
 import css from 'components/feedback/feedback.module.css'
+import { nanoid } from 'nanoid';
 
-const FeedbackOptions = ({ fbTitle, onLeaveFeedback, option }) => {
+const FeedbackOptions = ({ onLeaveFeedback, options }) => {
     return (
         <div className={css.wrapper}>
-            <button className={css.btn} type="button" onClick={onLeaveFeedback}><CiFaceSmile className={css.icon} /><span>Good</span></button>
-            <button className={css.btn} type="button" onClick={onLeaveFeedback}><CiFaceMeh className={css.icon} /><span>Neutral</span></button>
-            <button className={css.btn} type="button" onClick={onLeaveFeedback}><CiFaceFrown className={css.icon} /><span>Bad</span></button>
+            {options.map(option => {
+                const btnId = nanoid();
+                return (
+                    <button className={css.btn} key={btnId} type="button" onClick={() => onLeaveFeedback(option)}>
+                        {option === 'good' && <CiFaceSmile />}{option === 'neutral' && <CiFaceMeh />}{option === 'bad' && <CiFaceFrown />}
+                        <span>{option}</span>
+                    </button>
+                )
+            })}
         </div>
-    )
+    );
 }
 
 export default FeedbackOptions;
